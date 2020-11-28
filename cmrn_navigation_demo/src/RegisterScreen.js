@@ -20,9 +20,12 @@ export default function RegisterScreen(props) {
           })
     }
 
-    return (
-        <View>
-            <Text>Register</Text>
-        </View>
+        return (
+            <View style={{flex: 1, justifyContent: 'center',alignItems:'center'}}>
+                <Text>Register</Text>
+                <Button title="Back" onPress={()=>{
+                    props.navigation.goBack()
+                }}/>
+            </View>
     )
 }
