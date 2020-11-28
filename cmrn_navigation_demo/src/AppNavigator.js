@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 const RootStack = (props)=>{
     return (
         <Stack.Navigator initialRouteName="Login">
-            <Stack.Screen name="Login" component={LoginScreen}/>
+            <Stack.Screen name="Login" component={LoginScreen} options={{title:"Home"}}/>
             <Stack.Screen name="Register" component={RegisterScreen}/>
         </Stack.Navigator>
     )
