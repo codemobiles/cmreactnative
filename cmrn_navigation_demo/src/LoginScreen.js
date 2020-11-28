@@ -37,6 +37,10 @@ export default function LoginScreen(props) {
     return (
         <View style={{flex: 1, justifyContent: 'center',alignItems:'center'}}>
             <Text>Login</Text>
+            <Button title="Login" onPress={()=>{
+                props.navigation.navigate("Success")
+            }}/>
+            <View style={{height: 10}}/>
             <Button title="Register" onPress={()=>{
                 props.navigation.navigate("Register")
             }}/>

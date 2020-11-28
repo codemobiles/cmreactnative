@@ -61,8 +61,9 @@ const RootStack = (props) => {
     <Stack.Navigator initialRouteName="Login">
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen name="Success" component={TabScreens} />
     </Stack.Navigator>
   );
 };
 
-export default TabScreens;
+export default RootStack;
