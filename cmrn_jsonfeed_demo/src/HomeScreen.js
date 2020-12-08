@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
 import axios from 'axios';
 
 const url =
@@ -22,9 +22,15 @@ export default function HomeScreen() {
 
   return (
     <View style={{flex: 1}}>
-      {dataArray.map((item) => (
-        <Text key={item.id}>{item.title}</Text>
-      ))}
+      <FlatList
+        data={dataArray}
+        renderItem={({item, index}) => (
+          <Text>
+            {index+1}. {item.title}
+          </Text>
+        )}
+        keyExtractor={(item) => item.id}
+      />
     </View>
   );
 }
