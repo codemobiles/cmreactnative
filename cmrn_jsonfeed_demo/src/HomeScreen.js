@@ -15,14 +15,19 @@ const url =
 
 export default function HomeScreen() {
   const [dataArray, setDataArray] = useState([]);
+  const [isFetching, setIsFetching] = useState(false)
   useEffect(() => {
     loadData();
   }, []);
 
   loadData = async () => {
     try {
+      setIsFetching(true)
+      setDataArray([]);
       const result = await axios.get(url);
       setDataArray(result.data.youtubes);
+
+      setIsFetching(false)
     } catch (e) {
       setDataArray([]);
     }
@@ -63,6 +68,8 @@ export default function HomeScreen() {
       <FlatList
         data={dataArray}
         renderItem={renderRow}
+        refreshing={isFetching}
+        onRefresh={loadData}
         keyExtractor={(item) => item.id}
       />
     </ImageBackground>
