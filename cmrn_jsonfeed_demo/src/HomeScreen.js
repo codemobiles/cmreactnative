@@ -91,7 +91,7 @@ export default function HomeScreen(props) {
   renderRow = ({item, index}) => (
     <TouchableOpacity
       onPress={() => {
-        props.navigation.navigate('DetailScreen');
+        props.navigation.navigate('DetailScreen', {item:item});
       }}
       style={styles.listCard}>
       {/* Avatar and title, subtitle */}

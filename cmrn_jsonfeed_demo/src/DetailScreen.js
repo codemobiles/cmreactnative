@@ -22,7 +22,7 @@ export default function DetailScreen(props) {
 
   return (
     <View>
-      <Text>Detial</Text>
+      <Text>Debug: {JSON.stringify(props.route.params.item)}</Text>
     </View>
   )
 }
