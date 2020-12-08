@@ -29,9 +29,9 @@ export default function HomeScreen() {
   };
 
   renderRow = ({item, index}) => (
-    <TouchableOpacity onPress={()=>alert(item.title)}>
-     {/* Avatar and title, subtitle */}
-     <View style={styles.listCardView}>
+    <TouchableOpacity style={styles.listCard} onPress={() => alert(item.title)}>
+      {/* Avatar and title, subtitle */}
+      <View style={styles.listCardView}>
         {/* Avatar */}
         <Image style={styles.listAvatar} source={{uri: item.avatar_image}} />
 
@@ -39,11 +39,14 @@ export default function HomeScreen() {
         <View style={styles.listTitleSubtitleContainer}>
           <Text style={styles.listTitle}>{item.title}</Text>
           <Text style={styles.listSubTitle}>{item.subtitle}</Text>
-        </View>        
+        </View>
       </View>
 
       {/* Youtube Image */}
-      <Image source={{uri:item.youtube_image}} style={styles.listYoutbeImage}/>
+      <Image
+        source={{uri: item.youtube_image}}
+        style={styles.listYoutbeImage}
+      />
     </TouchableOpacity>
   );
 
