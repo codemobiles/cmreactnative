@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  ImageBackground,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import axios from 'axios';
 
 const url =
@@ -20,20 +27,27 @@ export default function HomeScreen() {
     }
   };
 
-
   renderRow = ({item, index}) => (
     <Text>
-      {index+1}. {item.title}
+      {index + 1}. {item.title}
     </Text>
-  )
+  );
 
   return (
-    <View style={{flex: 1}}>
+    <ImageBackground
+      source={require('./assets/img/gradient_bg.png')}
+      style={{flex: 1}}>
+      {/* Banner */}
+      <Image
+        style={{height: 120, width: '100%'}}
+        resizeMode="contain"
+        source={require('./assets/img/header_react_native.png')}
+      />
       <FlatList
         data={dataArray}
         renderItem={renderRow}
         keyExtractor={(item) => item.id}
       />
-    </View>
+    </ImageBackground>
   );
 }
