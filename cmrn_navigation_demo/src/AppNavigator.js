@@ -7,6 +7,7 @@ import LoginScreen from './LoginScreen';
 import RegisterScreen from './RegisterScreen';
 import Tab1Screen from './Tab1Screen';
 import Tab2Screen from './Tab2Screen';
+import SubTab1Screen from './SubTab1Screen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -47,11 +48,21 @@ const tab1 = {
     ),
   };
 
+
+  const Tab1Navigator = (props) => {
+    return (
+      <Stack.Navigator initialRouteName="MainTab1">
+        <Stack.Screen name="MainTab1" component={Tab1Screen} />
+        <Stack.Screen name="SubTab1" component={SubTab1Screen} />    
+      </Stack.Navigator>
+    );
+  };
+
 const TabScreens = (props) => {
   return (
     <Tab.Navigator initialRouteName="Tab1">
-      <Stack.Screen name="Tab1" component={Tab1Screen} options={tab1}/>
-      <Stack.Screen name="Tab2" component={Tab2Screen} options={tab2}/>
+      <Tab.Screen name="Tab1" component={Tab1Navigator} options={tab1}/>
+      <Tab.Screen name="Tab2" component={Tab2Screen} options={tab2}/>
     </Tab.Navigator>
   );
 };
