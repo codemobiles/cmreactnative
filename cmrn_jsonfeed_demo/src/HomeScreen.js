@@ -9,58 +9,91 @@ import {
   StyleSheet,
 } from 'react-native';
 import axios from 'axios';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const url =
   'https://codemobiles.com/adhoc/youtubes/index_new.php?username=admin&password=password&type=foods';
 
-const urlWithPost =
-  'https://codemobiles.com/adhoc/youtubes/index_new.php';
+const urlWithPost = 'https://codemobiles.com/adhoc/youtubes/index_new.php';
 
-export default function HomeScreen() {
+export default function HomeScreen(props) {
   const [dataArray, setDataArray] = useState([]);
-  const [isFetching, setIsFetching] = useState(false)
+  const [isFetching, setIsFetching] = useState(false);
   useEffect(() => {
     // loadData();
-    loadDataWithPost()
+    setNavigationOption();
+    loadDataWithPost();
   }, []);
 
   loadData = async () => {
     try {
-      setIsFetching(true)
+      setIsFetching(true);
       setDataArray([]);
       const result = await axios.get(url);
       setDataArray(result.data.youtubes);
 
-      setIsFetching(false)
+      setIsFetching(false);
     } catch (e) {
       setDataArray([]);
     }
   };
 
+  setNavigationOption = () => {
+    props.navigation.setOptions({
+      title: 'Home',
+      headerStyle: {
+        backgroundColor: '#999CED',
+      },
+      headerTintColor: '#FFFFFF',
+      headerTitleStyle: {color: '#fff'},
+      headerBackTitle: ' ',
+      headerRight: () => (
+        <TouchableOpacity
+          activeOpacity={0.1}
+          onPress={() => alert('www.codemobiles.com')}
+          style={{padding: 10}}>
+          <Icon
+            name="address-card"
+            size={20}
+            color="#fff"
+            style={{
+              height: 24,
+              width: 24,
+            }}
+          />
+        </TouchableOpacity>
+      ),
+    });
+  };
+
   loadDataWithPost = async () => {
     try {
-      setIsFetching(true)
+      setIsFetching(true);
       setDataArray([]);
 
-      const regUsername = "admin"
-      const regPassword = "password"
+      const regUsername = 'admin';
+      const regPassword = 'password';
       let data = `username=${regUsername}&password=${regPassword}&type=foods`;
-    //   let dataJson = {
-    //       username: regUsername, 
-    //       password: regPassword
-    //   }
-      
+      //   let dataJson = {
+      //       username: regUsername,
+      //       password: regPassword
+      //   }
+
       const result = await axios.post(urlWithPost, data);
       setDataArray(result.data.youtubes);
 
-      setIsFetching(false)
+      setIsFetching(false);
     } catch (e) {
       setDataArray([]);
     }
   };
 
   renderRow = ({item, index}) => (
-    <TouchableOpacity style={styles.listCard} onPress={() => alert(item.title)}>
+    <TouchableOpacity
+      onPress={() => {
+        props.navigation.navigate('DetailScreen');
+      }}
+      style={styles.listCard}>
       {/* Avatar and title, subtitle */}
       <View style={styles.listCardView}>
         {/* Avatar */}
