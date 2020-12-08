@@ -13,11 +13,15 @@ import axios from 'axios';
 const url =
   'https://codemobiles.com/adhoc/youtubes/index_new.php?username=admin&password=password&type=foods';
 
+const urlWithPost =
+  'https://codemobiles.com/adhoc/youtubes/index_new.php';
+
 export default function HomeScreen() {
   const [dataArray, setDataArray] = useState([]);
   const [isFetching, setIsFetching] = useState(false)
   useEffect(() => {
-    loadData();
+    // loadData();
+    loadDataWithPost()
   }, []);
 
   loadData = async () => {
@@ -25,6 +29,28 @@ export default function HomeScreen() {
       setIsFetching(true)
       setDataArray([]);
       const result = await axios.get(url);
+      setDataArray(result.data.youtubes);
+
+      setIsFetching(false)
+    } catch (e) {
+      setDataArray([]);
+    }
+  };
+
+  loadDataWithPost = async () => {
+    try {
+      setIsFetching(true)
+      setDataArray([]);
+
+      const regUsername = "admin"
+      const regPassword = "password"
+      let data = `username=${regUsername}&password=${regPassword}&type=foods`;
+    //   let dataJson = {
+    //       username: regUsername, 
+    //       password: regPassword
+    //   }
+      
+      const result = await axios.post(urlWithPost, data);
       setDataArray(result.data.youtubes);
 
       setIsFetching(false)
