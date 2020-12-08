@@ -20,15 +20,18 @@ export default function HomeScreen() {
     }
   };
 
+
+  renderRow = ({item, index}) => (
+    <Text>
+      {index+1}. {item.title}
+    </Text>
+  )
+
   return (
     <View style={{flex: 1}}>
       <FlatList
         data={dataArray}
-        renderItem={({item, index}) => (
-          <Text>
-            {index+1}. {item.title}
-          </Text>
-        )}
+        renderItem={renderRow}
         keyExtractor={(item) => item.id}
       />
     </View>
