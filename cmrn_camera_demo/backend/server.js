@@ -17,7 +17,7 @@ app.get("/test", (req, res)=>{
 app.post('/uploads', (req, res) => {
     let form = new formidable.IncomingForm();
     form.parse(req, (error, fields, files) => {
-      // res.json({error, fields, files});
+      console.log({error, fields, files});
       var newname = Date.now();
       var oldpath = files.userfile.path;
       var newpath =
