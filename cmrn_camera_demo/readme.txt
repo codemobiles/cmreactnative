@@ -20,3 +20,6 @@ https://github.com/ivpusic/react-native-image-crop-picker/issues/1406
 // iOS
 <key>NSCameraUsageDescription</key>
 <string>YOUR TEXT</string>
+
+// Backend
+yarn add express formidable fs-extra body-parser
