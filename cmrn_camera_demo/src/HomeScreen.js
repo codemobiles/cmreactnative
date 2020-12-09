@@ -9,6 +9,7 @@ import {
   NativeModules,
   Alert,
   Button,
+  Platform,
 } from 'react-native';
 
 import ImagePicker from 'react-native-image-crop-picker';
@@ -29,24 +30,23 @@ export default function HomeScreen() {
   };
 
   openPhotoGallery = async (cropIt) => {
-
     let image = await ImagePicker.openPicker({
-        // width: 300, // width after cropped
-        // height: 300, // height after cropped
-        cropping: cropIt,
-        compressImageMaxWidth: 640, // max width compress if not croppred
-        compressImageMaxHeight: 480, // max height compress if not croppred
-        compressImageQuality: 0.5,
-        compressVideoPreset: 'MediumQuality',
-        includeExif: true,
-      });
-  
-      setImage({
-        uri: image.path,
-        width: image.width,
-        height: image.height,
-        mime: image.mime,
-      });
+      // width: 300, // width after cropped
+      // height: 300, // height after cropped
+      cropping: cropIt,
+      compressImageMaxWidth: 640, // max width compress if not croppred
+      compressImageMaxHeight: 480, // max height compress if not croppred
+      compressImageQuality: 0.5,
+      compressVideoPreset: 'MediumQuality',
+      includeExif: true,
+    });
+
+    setImage({
+      uri: image.path,
+      width: image.width,
+      height: image.height,
+      mime: image.mime,
+    });
   };
 
   const uploadWithAxios = async () => {
@@ -69,7 +69,13 @@ export default function HomeScreen() {
       source={require('./assets/img/bg.png')}
       style={styles.container}>
       <Image
-        style={{marginLeft: 20, marginRight: 20, height: 100, width: null}}
+        style={{
+          marginLeft: 20,
+          marginRight: 20,
+          height: 100,
+          width: null,
+          marginTop: Platform.OS == 'ios' ? 50 : 0,
+        }}
         resizeMode="contain"
         source={require('./assets/img/banner_react_qr_camera.png')}
       />
@@ -97,7 +103,7 @@ export default function HomeScreen() {
           <Text style={styles.text}>GALLERY</Text>
         </TouchableOpacity>
       </View>
-      {image &&  
+      {image && (
         <>
           <Image
             source={image}
@@ -110,7 +116,8 @@ export default function HomeScreen() {
             style={styles.upload_button}>
             <Text style={styles.text}>UPLOAD</Text>
           </TouchableOpacity>
-        </>}
+        </>
+      )}
     </ImageBackground>
   );
 }
