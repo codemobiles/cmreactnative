@@ -28,7 +28,7 @@ export default function HomeScreen() {
     setImage({uri: image.path, width: image.width, height: image.height});
   };
 
-  openPhotoGallery = (cropIt) => {
+  openPhotoGallery = async (cropIt) => {
 
     let image = await ImagePicker.openPicker({
         // width: 300, // width after cropped
@@ -82,7 +82,20 @@ export default function HomeScreen() {
           <Text style={styles.text}>GALLERY</Text>
         </TouchableOpacity>
       </View>
-      <Text>Camera</Text>
+      {image &&  
+        <>
+          <Image
+            source={image}
+            style={{flex: 1, width: '100%', marginBottom: 20}}
+            resizeMode="contain"
+          />
+
+          <TouchableOpacity
+            onPress={() => uploadWithAxios(image)}
+            style={styles.upload_button}>
+            <Text style={styles.text}>UPLOAD</Text>
+          </TouchableOpacity>
+        </>}
     </ImageBackground>
   );
 }
