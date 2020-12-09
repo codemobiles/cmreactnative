@@ -5,6 +5,11 @@ yarn add react-native-permissions
 npx react-native link react-native-permissions
 
 https://github.com/zoontek/react-native-permissions
+permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+  pod 'Permission-MediaLibrary', :path => "#{permissions_path}/MediaLibrary"
+  pod 'Permission-Microphone', :path => "#{permissions_path}/Microphone"
+  pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
 
 
 // Fix Error 
@@ -18,8 +23,13 @@ https://github.com/ivpusic/react-native-image-crop-picker/issues/1406
 
 
 // iOS
-<key>NSCameraUsageDescription</key>
-<string>YOUR TEXT</string>
+	<key>NSCameraUsageDescription</key>
+	<string>YOUR TEXT</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>test</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>test</string>
+
 
 // Backend
 yarn add express formidable fs-extra body-parser

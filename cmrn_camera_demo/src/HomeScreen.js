@@ -59,7 +59,7 @@ export default function HomeScreen() {
       name: 'testPhotoName.jpg',
     });
 
-    let result = await axios.post('http://192.168.1.4:3000/uploads', data);
+    let result = await axios.post('http://192.168.3.17:3000/uploads', data);
     console.log(JSON.stringify(result.data));
     Alert.alert(JSON.stringify(result.data));
   };
