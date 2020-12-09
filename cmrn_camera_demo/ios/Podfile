@@ -12,6 +12,10 @@ target 'cmrn_camera_demo' do
 
   pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
 
+
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+
   target 'cmrn_camera_demoTests' do
     inherit! :complete
     # Pods for testing
